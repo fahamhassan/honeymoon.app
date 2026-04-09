@@ -1,6 +1,9 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import Constants from 'expo-constants';
 
-export const BASE_URL = 'http://localhost:5000/api/v1';
+const extra = Constants.expoConfig?.extra ?? Constants.manifest2?.extra ?? Constants.manifest?.extra;
+const configured = typeof extra?.apiUrl === 'string' ? extra.apiUrl.replace(/\/$/, '') : '';
+export const BASE_URL = configured || 'http://localhost:5000/api/v1';
 
 // ─── Token storage helpers ────────────────────────────────────────────────────
 export const TokenStore = {
