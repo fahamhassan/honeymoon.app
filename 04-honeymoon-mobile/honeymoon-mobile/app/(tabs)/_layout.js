@@ -1,5 +1,5 @@
 import { Tabs } from 'expo-router';
-import { Platform } from 'react-native';
+import { Platform, Text } from 'react-native';
 import { COLORS } from '../../constants/theme';
 
 // iOS has a home indicator bar at the bottom (~34pt on modern iPhones)
