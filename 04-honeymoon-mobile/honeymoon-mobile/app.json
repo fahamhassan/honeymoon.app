@@ -49,7 +49,7 @@
       ]
     ],
     "extra": {
-      "apiUrl": "https://api.honeymoon.ae/api/v1",
+      "apiUrl": "http://localhost:5000/api/v1",
       "eas": {
         "projectId": "your-eas-project-id"
       }

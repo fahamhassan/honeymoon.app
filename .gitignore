@@ -33,6 +33,9 @@ yarn-error.log*
 # testing
 coverage/
 
+# Expo
+.expo/
+
 # Mobile signing (optional)
 *.jks
 *.p8
