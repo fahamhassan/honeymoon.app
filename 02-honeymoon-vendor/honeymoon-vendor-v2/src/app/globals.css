@@ -1,0 +1,86 @@
+@import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500;600;700&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg: #f4ebd0;
+  --sidebar-bg: #174a37;
+  --header-bg: #174a37;
+  --card: #ffffff;
+  --input-bg: #f1ebe1;
+  --gold: #B8965A;
+  --dark-green: #1A3828;
+  --text: #1a1a1a;
+  --muted: #666666;
+  --border: rgba(184,154,105,0.2);
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { height: 100%; }
+body { background: var(--bg); font-family: 'DM Sans', sans-serif; color: var(--text); }
+
+/* ── Typography ── */
+.font-display { font-family: 'Baskerville Old Face', 'Libre Baskerville', 'Baskerville', Georgia, serif; }
+
+/* ── Buttons ── */
+.btn-primary {
+  @apply inline-flex items-center gap-2 bg-[#1A3828] text-white font-medium text-base px-6 py-3 rounded-full transition-opacity hover:opacity-90 whitespace-nowrap;
+}
+.btn-secondary {
+  @apply inline-flex items-center gap-2 bg-[#CBD5C0] text-[#1A3828] font-medium text-base px-6 py-3 rounded-full transition-opacity hover:opacity-80 whitespace-nowrap;
+}
+.btn-outline {
+  @apply inline-flex items-center gap-2 border border-[#1A3828] text-[#1A3828] font-medium text-base px-6 py-3 rounded-full transition-colors hover:bg-[#1A3828] hover:text-white whitespace-nowrap;
+}
+
+/* ── Cards ── */
+.card {
+  @apply bg-white rounded-2xl border border-[rgba(184,154,105,0.29)] shadow-[0_0_55px_0_rgba(0,0,0,0.05)];
+}
+
+/* ── Tables ── */
+.tbl-head { @apply font-bold text-[#1a1a1a] text-sm capitalize; }
+.tbl-row { @apply border-b border-[rgba(184,154,105,0.2)] last:border-0 hover:bg-[#faf7f0] transition-colors; }
+
+/* ── Nav items (sidebar) ── */
+.nav-item {
+  @apply flex items-center gap-3 px-4 py-2.5 rounded-xl text-[#f1ebe1] font-medium text-base capitalize cursor-pointer transition-all;
+}
+.nav-item:hover { background: rgba(255,255,255,0.08); }
+.nav-item.active { @apply bg-[#f4ebd0] text-[#174a37]; }
+
+/* ── Status text (explicit colors: theme overrides default green scale) ── */
+.status-active, .status-completed, .status-resolved, .status-received { @apply font-medium; color: #16a34a; }
+.status-pending, .status-upcoming, .status-requested { @apply font-medium; color: #d97706; }
+.status-rejected, .status-lost, .status-returned { @apply font-medium; color: #dc2626; }
+.status-inactive { @apply text-gray-500 font-medium; }
+.status-contacted { @apply font-medium; color: #2563eb; }
+.status-scheduled { @apply font-medium; color: #9333ea; }
+.status-converted { @apply font-medium; color: #16a34a; }
+.status-unpaid { @apply text-gray-900 font-medium; }
+.status-paid { @apply font-medium; color: #16a34a; }
+
+/* ── Inputs ── */
+.input-field {
+  @apply w-full bg-[#f1ebe1] border border-[rgba(184,154,105,0.2)] rounded-lg px-4 py-3 text-base text-[#1a1a1a] outline-none focus:border-[#B8965A] transition-colors placeholder:text-[#999];
+}
+
+/* ── Tabs ── */
+.tab-pill {
+  @apply px-5 py-2 rounded-full text-sm font-medium border border-[#1A3828] text-[#1A3828] cursor-pointer transition-all;
+}
+.tab-pill.active { @apply bg-[#1A3828] text-white; }
+
+/* ── Modal overlay ── */
+.modal-overlay {
+  @apply fixed inset-0 bg-black/40 flex items-center justify-center z-50 p-4;
+}
+.modal-box {
+  @apply bg-white rounded-2xl shadow-2xl p-8 w-full max-w-md;
+}
+
+/* ── Scrollbar ── */
+::-webkit-scrollbar { width: 4px; height: 4px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: rgba(184,154,105,0.3); border-radius: 99px; }

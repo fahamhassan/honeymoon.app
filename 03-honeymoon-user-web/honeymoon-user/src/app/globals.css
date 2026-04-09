@@ -1,0 +1,40 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    color: #1a1a1a;
+    background: #ffffff;
+  }
+
+  .font-baskerville {
+    font-family: 'Baskerville Old Face', 'Libre Baskerville', Georgia, serif;
+  }
+
+  /* Responsive typography */
+  @media (max-width: 768px) {
+    .font-baskerville { letter-spacing: -0.02em; }
+  }
+}
+
+@layer utilities {
+  .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
+  .scrollbar-hide::-webkit-scrollbar { display: none; }
+  
+  /* Mobile-safe full height */
+  .min-h-screen-mobile { min-height: 100dvh; }
+}
+
+/* Responsive dashboard sidebar on mobile */
+@media (max-width: 1023px) {
+  .dashboard-sidebar { transform: translateX(-100%); }
+  .dashboard-sidebar.open { transform: translateX(0); }
+}
