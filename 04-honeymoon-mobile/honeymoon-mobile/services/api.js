@@ -41,7 +41,14 @@ async function request(method, path, body = null, requiresAuth = true, isRetry =
   try {
     res = await fetch(url, config);
   } catch (networkError) {
-    throw { message: 'Network error — check your connection', code: 'NETWORK_ERROR' };
+    const isLocal = /localhost|127\.0\.0\.1|10\.0\.2\.2/.test(url);
+    const hint = isLocal
+      ? ' The app is using a local API URL; on a real phone that will not work. Set expo.extra.apiUrl in app.json to https://api.honeymoon.ae/api/v1 and reload.'
+      : ' Open this URL in the phone browser to test: ' + BASE_URL.replace(/\/api\/v1\/?$/, '') + '/health';
+    throw {
+      message: `Network error — could not reach server.\n${url.split('?')[0]}${hint}`,
+      code: 'NETWORK_ERROR',
+    };
   }
 
   // ── Auto-refresh on 401 ──────────────────────────────────────────────────
