@@ -1,6 +1,6 @@
 /** @type {import('next').NextConfig} */
-// Vercel sets VERCEL=1; standalone output is for Docker (see Dockerfile) and breaks Vercel routing if always on.
-const useStandalone = process.env.VERCEL !== '1';
+// Standalone is only for Docker (see Dockerfile DOCKER_BUILD=1). Vercel must use default output or routes 404.
+const useStandalone = process.env.DOCKER_BUILD === '1';
 
 module.exports = {
   ...(useStandalone ? { output: 'standalone' } : {}),
