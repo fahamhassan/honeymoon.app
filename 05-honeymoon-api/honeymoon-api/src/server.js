@@ -89,21 +89,29 @@ app.use(notFoundHandler);
 app.use(errorHandler);
 
 /* ── Start ───────────────────────────────────────────────────────────────────── */
+const isVercel = process.env.VERCEL === '1';
+
 async function start() {
   try { const p = require('./config/prisma'); await p.$connect(); console.log('[DB] PostgreSQL connected'); }
   catch { console.warn('[DB] PostgreSQL unavailable — set DATABASE_URL in .env\n     Run: npx prisma migrate dev'); }
 
-  app.listen(PORT, () => {
-    console.log(`\n🚀 Honeymoon API — Session 4 (Payments)`);
-    console.log(`   http://localhost:${PORT}/api/v1`);
-    console.log(`\n   New: PayTabs | Apple Pay | PDF Receipts | Vendor Payouts | Earnings\n`);
+  if (!isVercel) {
+    app.listen(PORT, () => {
+      console.log(`\n🚀 Honeymoon API — Session 4 (Payments)`);
+      console.log(`   http://localhost:${PORT}/api/v1`);
+      console.log(`\n   New: PayTabs | Apple Pay | PDF Receipts | Vendor Payouts | Earnings\n`);
+    });
+  }
+}
+
+if (!isVercel) {
+  process.on('SIGTERM', async () => {
+    try { await require('./config/prisma').$disconnect(); } catch {}
+    process.exit(0);
   });
 }
 
-process.on('SIGTERM', async () => {
-  try { await require('./config/prisma').$disconnect(); } catch {}
-  process.exit(0);
-});
-
 start();
+
+/* Vercel serverless: @vercel/node invokes the exported app (no app.listen). */
 module.exports = app;

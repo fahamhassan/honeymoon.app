@@ -4,6 +4,7 @@
   "description": "Honeymoon Project REST API — Session 4: Payments",
   "main": "src/server.js",
   "scripts": {
+    "postinstall": "prisma generate",
     "start":       "node src/server.js",
     "dev":         "nodemon src/server.js",
     "db:migrate":  "npx prisma migrate dev",

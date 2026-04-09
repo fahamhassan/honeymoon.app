@@ -10,7 +10,8 @@ const prisma = globalForPrisma.prisma ?? new PrismaClient({
     : ['error'],
 });
 
-if (process.env.NODE_ENV !== 'production') {
+/* Reuse one client per warm instance (dev hot-reload + Vercel serverless). */
+if (process.env.NODE_ENV !== 'production' || process.env.VERCEL === '1') {
   globalForPrisma.prisma = prisma;
 }
 
