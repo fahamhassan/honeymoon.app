@@ -44,6 +44,14 @@ app.use(`${V}/auth`, authLimiter);
 app.use(`${V}/auth/phone/send-otp`, otpLimiter);
 app.use(`${V}/auth/forgot-password`, otpLimiter);
 
+/* ── Root (Vercel / browser smoke test — API lives under /api/v1) ───────────── */
+app.get('/', (_, res) => res.json({
+  success: true,
+  message: 'Honeymoon API',
+  api: `${V}`,
+  health: '/health',
+}));
+
 /* ── Health ─────────────────────────────────────────────────────────────────── */
 app.get('/health', async (_, res) => {
   let db = 'unavailable';
